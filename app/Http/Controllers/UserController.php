@@ -6,7 +6,11 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Roles;
 use App\Repositories\RolesRepository;
+use Spatie\Permission\Models\Role;
+use App\Models\User;
+
 
 use Illuminate\Http\Request;
 use Flash;
@@ -169,5 +173,38 @@ class UserController extends AppBaseController
         Flash::success('User deleted successfully.');
 
         return redirect(route('users.index'));
+    }
+
+    public function respuestas()
+    {
+        $users = User::whereHas("roles", function($q){ $q->where("name", "Role 1")->orWhere("name",'Role 2'); })->get();
+
+        $roles = Role::find(1);
+        $role = Role::all();
+
+        $roleSegundoP=[];
+
+
+        foreach($role as $r)
+        {
+            if($r->hasPermissionTo('Segundo Permiso'))
+            {
+                $roleSegundoP[]=$r;              
+                $userRole []= User::role($r->name)->get();
+              
+            
+            }   
+
+
+        }
+
+       
+
+
+   
+
+      
+
+        return view('users.respuesta')->with('users',$users)->with('roles',$roles)->with('userRole',$userRole)->with('roleSegundoP',$roleSegundoP);
     }
 }

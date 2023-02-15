@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Roles;
 use App\Repositories\BaseRepository;
+use Spatie\Permission\Models\Role;
 
 /**
  * Class RolesRepository
@@ -38,6 +39,6 @@ class RolesRepository extends BaseRepository
      **/
     public function model()
     {
-        return Roles::class;
+        return Role::class;
     }
 }

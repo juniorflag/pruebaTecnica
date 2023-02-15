@@ -29,3 +29,5 @@ Route::resource('permissions', App\Http\Controllers\PermissionsController::class
 
 
 Route::resource('users', App\Http\Controllers\UserController::class);
+Route::get('usersRespuesta', [App\Http\Controllers\UserController::class,'respuestas'])->name('users.respuestas');
+

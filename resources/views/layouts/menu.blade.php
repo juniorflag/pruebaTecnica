@@ -21,4 +21,11 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a href="{{ route('users.respuestas') }}"
+       class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
+        <p>Respuesta a Prueba</p>
+    </a>
+</li>
+
 
