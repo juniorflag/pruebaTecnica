@@ -4,31 +4,28 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+/**
+ * Class Roles
+ * @package App\Models
+ * @version February 15, 2023, 8:33 pm UTC
+ *
+ */
+class Roles extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable ,HasRoles;
 
-    public $table = 'users';
+
+    use HasFactory;
+
+    public $table = 'roles';
     
 
 
 
-
     public $fillable = [
-
         'name',
-        'email',
-        'password'
-        
+        'guard_name'
     ];
 
     /**
@@ -37,7 +34,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        
+        'name' => 'string',
+        'guard_name' => 'string'
     ];
 
     /**
@@ -46,7 +44,8 @@ class User extends Authenticatable
      * @var array
      */
     public static $rules = [
-        
+        'name' => 'required',
+  
     ];
 
     
