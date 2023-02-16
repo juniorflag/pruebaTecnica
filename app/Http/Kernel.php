@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'verifiedEmail' => \App\Http\Middleware\VerifyEmail::class,
         'verificarDias' => \App\Http\Middleware\verificarDias::class,
         'guardarCookie' => \App\Http\Middleware\GuardarCookie::class,
+        '2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
 
 
     ];

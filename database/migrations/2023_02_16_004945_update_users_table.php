@@ -17,7 +17,8 @@ class UpdateUsersTable extends Migration
             
             $table->dateTime('last_login')->nullable();
             $table->dateTime('previous_connection')->nullable();
-            $table->string('token_login')->nullable();
+            $table->text('google2fa_secret')->nullable();
+
 
         });
     }
@@ -32,7 +33,8 @@ class UpdateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('last_login');
             $table->dropColumn('previous_connection');
-            $table->dropColumn('token_login');
+            $table->dropColumn('google2fa_secret');
+
 
 
 

@@ -8,9 +8,36 @@
         {!! Form::text('email', null, ['class' => 'form-control round']) !!}
         
     </div>
+    
 
 
 
+
+
+                <div class="input-group mb-3">
+                    <input type="password"
+                           name="password"
+                           class="form-control @error('password') is-invalid @enderror"
+                           placeholder="Password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                    @error('password')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="password"
+                           name="password_confirmation"
+                           class="form-control"
+                           placeholder="Retype password">
+                    <div class="input-group-append">
+                        <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                    </div>
+                </div>
 
                    <div class="col-12 col-md-6">
         <div class="form-group">

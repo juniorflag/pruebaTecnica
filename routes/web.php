@@ -33,7 +33,7 @@ Route::get('/sesiones', function () {
 
 
 
-Route::middleware(['guardarCookie','verificarDias','verifiedEmail'])->group(function () {
+Route::middleware(['guardarCookie','verificarDias','verifiedEmail','2fa'])->group(function () {
    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -44,4 +44,11 @@ Route::resource('permissions', App\Http\Controllers\PermissionsController::class
 
 
 Route::resource('users', App\Http\Controllers\UserController::class);
+
+ Route::post('/2fa', function () {
+        return redirect(route('home'));
+    })->name('2fa');
+
 });
+
+Route::get('/complete-registration', [App\Http\Controllers\Auth\RegisterController::class, 'completeRegistration'])->name('complete.registration');

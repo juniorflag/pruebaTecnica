@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -27,7 +28,8 @@ class User extends Authenticatable
 
         'name',
         'email',
-        'password'
+        'password',
+        'google2fa_secret'
         
     ];
 
@@ -48,6 +50,14 @@ class User extends Authenticatable
     public static $rules = [
         
     ];
+
+      protected function google2faSecret(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value) =>  decrypt($value),
+            set: fn ($value) =>  encrypt($value),
+        );
+    }
 
     
 }
