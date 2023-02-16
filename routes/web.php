@@ -33,7 +33,7 @@ Route::get('/sesiones', function () {
 
 
 
-Route::middleware(['verifiedEmail','verificarDias'])->group(function () {
+Route::middleware(['guardarCookie','verificarDias','verifiedEmail'])->group(function () {
    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

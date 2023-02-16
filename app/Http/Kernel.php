@@ -66,6 +66,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'verifiedEmail' => \App\Http\Middleware\VerifyEmail::class,
         'verificarDias' => \App\Http\Middleware\verificarDias::class,
+        'guardarCookie' => \App\Http\Middleware\GuardarCookie::class,
+
 
     ];
 }

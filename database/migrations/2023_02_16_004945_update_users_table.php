@@ -16,6 +16,9 @@ class UpdateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             
             $table->dateTime('last_login')->nullable();
+            $table->dateTime('previous_connection')->nullable();
+            $table->string('token_login')->nullable();
+
         });
     }
 
@@ -28,6 +31,11 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('last_login');
+            $table->dropColumn('previous_connection');
+            $table->dropColumn('token_login');
+
+
+
         });
     }
 }

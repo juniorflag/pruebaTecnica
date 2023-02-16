@@ -28,6 +28,7 @@ class SuccessfulLogin
      */
   public function handle(Login $event)
 {
+    $event->user->previous_connection= $event->user->last_login;
     $event->user->last_login = new DateTime;
     $event->user->save();
 }

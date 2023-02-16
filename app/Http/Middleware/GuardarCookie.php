@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Providers\RouteServiceProvider;
-use DateTime;
+use Cookie;
 
-
-class verificarDias
+class GuardarCookie
 {
     /**
      * Handle an incoming request.
@@ -19,27 +17,16 @@ class verificarDias
      */
     public function handle(Request $request, Closure $next)
     {
-           $date = new DateTime;
 
-           $d = new DateTime(auth()->user()->previous_connection); 
-           $dias =$d->diff($date);
 
-  
-
-        if($dias->days > 1)
+        if(auth()->user()->hasRole('Role 1') &&  $_SERVER["REMOTE_ADDR"] == "127.0.0.1")
         {
-           
-          return redirect(RouteServiceProvider::SESION);
+            
 
-
+            $origin_sesion =  Cookie::queue('origin_sesion', $_SERVER["REMOTE_ADDR"]  ,120);
         }
 
-     
-
-           
-
-
-
         return $next($request);
+
     }
 }
