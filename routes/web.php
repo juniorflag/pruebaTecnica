@@ -19,18 +19,29 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verifiedEmail');
 
-
-Route::resource('roles', App\Http\Controllers\RolesController::class)->middleware('verifiedEmail');
-
-
-Route::resource('permissions', App\Http\Controllers\PermissionsController::class)->middleware('verifiedEmail');
-
-
-Route::resource('users', App\Http\Controllers\UserController::class)->middleware('verifiedEmail');
 Route::get('usersRespuesta', [App\Http\Controllers\UserController::class,'respuestas'])->name('users.respuestas');
 
 Route::get('/verificacion', function () {
     return view('auth.verify');
 })->name('verificacion');
+
+Route::get('/sesiones', function () {
+    return view('sesiones');
+})->name('sesion');
+
+
+
+
+Route::middleware(['verifiedEmail','verificarDias'])->group(function () {
+   Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::resource('roles', App\Http\Controllers\RolesController::class);
+
+
+Route::resource('permissions', App\Http\Controllers\PermissionsController::class);
+
+
+Route::resource('users', App\Http\Controllers\UserController::class);
+});

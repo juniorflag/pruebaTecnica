@@ -5,8 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
+use DateTime;
 
-class VerifyEmail
+
+class verificarDias
 {
     /**
      * Handle an incoming request.
@@ -17,17 +19,27 @@ class VerifyEmail
      */
     public function handle(Request $request, Closure $next)
     {
-       if(auth()->user()->email_verified_at == NULL)
-        {
-          return redirect(RouteServiceProvider::VERIFICACION);
+           $date = new DateTime;
 
+           $d = new DateTime(auth()->user()->last_login); 
+           $dias =$d->diff($date);
+
+  
+
+        if($dias->days > 1)
+        {
+           
+          return redirect(RouteServiceProvider::SESION);
 
 
         }
+
+     
+
+           
+
+
+
         return $next($request);
-
-
-
-
     }
 }
